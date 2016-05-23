@@ -13,6 +13,13 @@ jQuery ->
       create_new_event(date, url)
       $('#calendar').fullCalendar("refetchEvents");
 
+    eventRender: (event, element) ->
+      element.attr('href', 'javascript:void(0);');
+
+    eventClick: ( event, jsEvent, view ) ->
+      url = '/events/' +  event.id + '/edit'
+      edit_event(url);
+
     eventResize: ( event, delta, revertFunc ) ->
       update_event(event)
 
@@ -21,11 +28,19 @@ jQuery ->
 
     eventAfterRender: (event, element, view) ->
       element.find(".fc-content")
-            .append("<br><b>Description</b>:" + event.description)
-            .append("<br><b>Info</b>:" + event.info);
+            .append("<br><b>" + event.description + "</b>")
+            .append("<br><b>" + event.info + "</b>");
   });
 
   $('#calendar').fullCalendar('render');
+
+  edit_event = (url) ->
+    $.ajax {
+      url: url,
+      dataType: 'script',
+      complete: ->
+        console.log("edit")
+    }
 
   update_event = (event) ->
     start = event.start.format('YYYY-MM-DD')
@@ -45,7 +60,7 @@ jQuery ->
             }
       complete: ->
         console.log('event is updated')
-  }
+    }
 
 
   create_new_event = (date, url) ->
@@ -63,3 +78,15 @@ jQuery ->
       complete: ->
         console.log('created event')
     }
+
+  $('body').on 'click', '.submit-edited-btn', (e) ->
+    event = $('form').serialize();
+    $.ajax {
+      url: $('form').attr('action'),
+      method: 'PUT',
+      data: event,
+      complete: ->
+        console.log('event is updated')
+    }
+    $('#calendar').fullCalendar( 'refetchEvents' );
+    e.preventDefault()

@@ -1,0 +1,5 @@
+= simple_form_for @event, url: api_event_path, remote: true do |f|
+  = f.input :title
+  = f.input :description
+  = f.input :info
+  = f.submit 'Save', class: 'button submit-edited-btn'
