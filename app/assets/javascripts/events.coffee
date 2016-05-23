@@ -10,25 +10,14 @@ jQuery ->
     dayClick: ->
       url = '/api/events'
       date = $(this).data('date')
-      console.log(date)
       create_new_event(date, url)
       $('#calendar').fullCalendar("refetchEvents");
 
     eventResize: ( event, delta, revertFunc ) ->
-      start = event.start.format('YYYY-MM-DD')
-      end = start
-      if event.end != null
-        end = event.end.format('YYYY-MM-DD')
-      console.log("done eventResizeStop" + " " + start + " " + end)
-      update_event(event, start, end)
+      update_event(event)
 
     eventDrop: ( event, delta, revertFunc, jsEvent, ui, view ) ->
-      start = event.start.format('YYYY-MM-DD')
-      end = start
-      if event.end != null
-        end = event.end.format('YYYY-MM-DD')
-      console.log("done eventDrop" + " " + start + " " + end)
-      update_event(event, start, end)
+      update_event(event)
 
     eventAfterRender: (event, element, view) ->
       element.find(".fc-content")
@@ -38,7 +27,11 @@ jQuery ->
 
   $('#calendar').fullCalendar('render');
 
-  update_event = (event, start, end) ->
+  update_event = (event) ->
+    start = event.start.format('YYYY-MM-DD')
+    end = start
+    if event.end != null
+      end = event.end.format('YYYY-MM-DD')
     $.ajax {
       url: '/api/events/'+event.id,
       method: 'PUT',
@@ -50,8 +43,8 @@ jQuery ->
               end_time: end
               }
             }
-      success: ->
-        console.log('event is now updated')
+      complete: ->
+        console.log('event is updated')
   }
 
 
@@ -67,6 +60,6 @@ jQuery ->
                 end_time: date
               }
             },
-      success: ->
+      complete: ->
         console.log('created event')
     }
