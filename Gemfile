@@ -18,6 +18,7 @@ gem 'haml'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'fullcalendar-rails'
 gem 'momentjs-rails'
+gem 'simple_form'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.3'
