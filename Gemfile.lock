@@ -38,12 +38,17 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.4.0)
     arel (6.0.3)
+    autoprefixer-rails (6.3.6.1)
+      execjs
     better_errors (2.1.1)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
       rack (>= 0.9.0)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
+    bootstrap-sass (3.3.6)
+      autoprefixer-rails (>= 5.2.1)
+      sass (>= 3.3.4)
     builder (3.2.2)
     byebug (8.2.2)
     capybara (2.7.1)
@@ -94,6 +99,8 @@ GEM
       guard (~> 2.1)
       guard-compat (~> 1.1)
       rspec (>= 2.99.0, < 4.0)
+    haml (4.0.7)
+      tilt
     hashdiff (0.3.0)
     i18n (0.7.0)
     jbuilder (2.4.1)
@@ -233,6 +240,7 @@ PLATFORMS
 DEPENDENCIES
   better_errors
   binding_of_caller
+  bootstrap-sass (~> 3.3.6)
   byebug
   capybara
   coffee-rails (~> 4.1.0)
@@ -240,6 +248,7 @@ DEPENDENCIES
   factory_girl_rails
   faker
   guard-rspec
+  haml
   jbuilder (~> 2.0)
   jquery-rails
   rails (= 4.2.5.1)
