@@ -19,8 +19,15 @@ jQuery ->
       end = start
       if event.end != null
         end = event.end.format('YYYY-MM-DD')
-
       console.log("done eventResizeStop" + " " + start + " " + end)
+      update_event(event, start, end)
+
+    eventDrop: ( event, delta, revertFunc, jsEvent, ui, view ) ->
+      start = event.start.format('YYYY-MM-DD')
+      end = start
+      if event.end != null
+        end = event.end.format('YYYY-MM-DD')
+      console.log("done eventDrop" + " " + start + " " + end)
       update_event(event, start, end)
 
     eventAfterRender: (event, element, view) ->
