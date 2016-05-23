@@ -16,6 +16,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'haml'
 gem 'bootstrap-sass', '~> 3.3.6'
+gem 'fullcalendar-rails'
+gem 'momentjs-rails'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.3'
