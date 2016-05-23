@@ -20,8 +20,8 @@ RSpec.describe 'List events', :type => :request  do
       expect(response_body[0]).to have_key("title")
       expect(response_body[0]).to have_key("description")
       expect(response_body[0]).to have_key("info")
-      expect(response_body[0]).to have_key("start_time")
-      expect(response_body[0]).to have_key("end_time")
+      expect(response_body[0]).to have_key("start")
+      expect(response_body[0]).to have_key("end")
     end
   end
 end
